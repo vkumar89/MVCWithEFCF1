@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVCWithEFCF1.Models.Category>
+@{
+    ViewBag.Title = "DisplayCategories";
+}
+
+<h2>DisplayCategories</h2>
+
+<table border="1" align="center" class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(C => C.CategoryId)</th>
+        <th>@Html.DisplayNameFor(C => C.CategoryName)</th>
+        <th>@Html.DisplayNameFor(C => C.Description)</th>
+        <th>@Html.DisplayNameFor(C => C.Products)</th>
+        <th>Action Links</th>
+    </tr>
+    @foreach (var cat in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(C => cat.CategoryId)</td>
+            <td>@Html.DisplayFor(C => cat.CategoryName)</td>
+            <td>@Html.DisplayFor(C => cat.Description)</td>
+            <td>@Html.DisplayFor(C => cat.Products)</td>
+            <td>
+                <button class="btn btn-outline-secondary">
+                    @Html.ActionLink("Edit", "EditCategory", new { CategoryId = cat.CategoryId })
+                </button>
+                <button class="btn btn-outline-danger">
+                    @Html.ActionLink("Delete", "DeleteCategory", new { CategoryId = cat.CategoryId })
+                </button>
+            </td>
+        </tr>
+
+    }
+    <tr><td colspan="4" align="center">@Html.ActionLink("Add New Category", "AddCategory")</td></tr>
+
+</table>

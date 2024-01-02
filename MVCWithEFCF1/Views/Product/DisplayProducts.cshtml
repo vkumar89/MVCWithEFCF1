@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MVCWithEFCF1.Models.Product>
+@{
+    ViewBag.Title = "DisplayProducts";
+}
+
+<h2>DisplayProducts</h2>
+
+<table border="1" align="center">
+    <tr>
+    <tr>
+        <th>@Html.DisplayNameFor(P => P.Id)</th>
+        <th>@Html.DisplayNameFor(P => P.ProductName)</th>
+        <th>@Html.DisplayNameFor(P => P.UnitPrice)</th>
+        <th>@Html.DisplayNameFor(P => P.ProductImage)</th>
+        <th>@Html.DisplayNameFor(P => P.CategoryId)</th>
+        <th>@Html.DisplayNameFor(P => P.Category.CategoryName)</th>
+        <th>@Html.DisplayNameFor(P => P.Category.Description)</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var products in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(P => products.Id)</td>
+            <td>@Html.DisplayFor(P => products.ProductName)</td>
+            <td>@Html.DisplayFor(P => products.UnitPrice)</td>
+            <td><img src='/Uploads/@products.ProductImageName' width="40" height="25" alt="No Image" /></td>
+            <td>@Html.DisplayFor(P => products.CategoryId)</td>
+            <td>@Html.DisplayFor(P => products.Category.CategoryName)</td>
+            <td>@Html.DisplayFor(P => products.Category.Description)</td>
+            <td>
+                @Html.ActionLink("View", "DisplayProduct", new { Id = products.Id })
+                @Html.ActionLink("Edit", "EditProduct", new { Id = products.Id })
+                @Html.ActionLink("Delete", "DeleteProduct", new { Id = products.Id },
+                            new { onclick = "return confirm('Are you sure of deleting the record?')" })
+            </td>
+
+        </tr>
+
+    }
+
+
+    <tr><td colspan="9" align="center">@Html.ActionLink("Add New Product", "AddProduct")</td></tr>
+</table>
