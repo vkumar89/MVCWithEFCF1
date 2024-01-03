@@ -9,6 +9,10 @@ namespace MVCWithEFCF1.Models
 {
     public class StoreDbContext : DbContext
     {
+        public StoreDbContext()
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<StoreDbContext>());
+        }
         public DbSet<Category> categories { get; set; }
         public DbSet<Product> products { get; set; }
 
